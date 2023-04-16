@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+    --nav-width: 300px;
+    --shadow: 
+}
+
+body{
+    background-color: rgb(18,23,21);
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    height: 97vh;
+    width:100vw;
+    display: flex;
+}
+#sentiment-analyzer{
+    width:calc(100vw - var(--nav-width));
+    background-color: black;
+    color:white;
+}
+#portfolio-analyzer{
+    width:calc(100vw - var(--nav-width));
+    background-color: black;
+    color:white;
+}
+
+#portfolio-analyzer div{
+    width:500px;
+}   
+
+
+.method-section .funda-table{
+    color:white;
+    width:215px;
+    font-size: 14px;
+    font-weight: 200;
+    border-collapse: collapse;
+}
+.method-section  .funda-table tr{
+    height:40px;
+}
+
+.method-section  .funda-table td{
+    border-top:1px solid rgba(255,255,255,0.5);
+    border-bottom:1px solid rgba(255,255,255,0.5);
+}
+/* 
+div[name='fundamental']{
+    color:white;
+} */
+
+.method-section  .funda-table .right{
+    font-weight: 500;
+    text-align: right;
+}
+
+/* #portfolio-analyzer .ticker-dropdown{
+    width:100px;
+    height:30px;
+} */
+
+.main-section .stock-details{
+    color:white;
+}
+
+.main-section .stock-details .left{
+    margin-left:15px;
+}
+.main-section .stock-details .heading{
+    font-size: 28px;
+    margin: 20px 0px 0px 0px;
+    font-weight: 600;
+}
+
+.main-section .stock-details .description{
+    margin: 0px 0px 10px 0px;
+    font-size: 15px;
+}
+
+
+#portfolio-analyzer.hidden{
+    display: none;
+}
+#sentiment-analyzer.hidden{
+    display: none;
+}
+
+.main-section.hidden{
+    display: none !important    ;
+}
+
+.container .left-section{
+    float: left;
+    display: inline;
+    width:var(--nav-width);
+    height:100%;
+    margin:20px;
+    /* background-color:rgb(43,48,47); */
+    box-shadow:rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.container .main-section{
+    float: right;
+    display: inline;
+    height:100%;
+    width:calc(100vw - var(--nav-width));
+    background-color: black;
+}
+
+.left-section .indexes .heading{
+    color:rgb(61, 66, 65);
+    margin-bottom:8px;
+}
+
+.left-section .indexes .index-box{
+    background-color: rgb(48, 52, 51);
+    border-radius:8px;
+    display: flex;
+    justify-content: space-between;
+    margin:5px 0px 11px 0px
+}
+
+.left-section .indexes .index-box .left{
+    margin-left:8px;
+}
+.left-section .indexes .index-box .left .index-name{
+    color:white;
+    font-weight: 600;
+    font-size:13px;
+    margin-bottom:3px;
+}
+.left-section .indexes .index-box .left .index-value{
+    color:rgba(255,255,255, 0.8);
+    font-weight: 500;
+    margin-top:0px;
+    font-size:12px;
+}
+.left-section .indexes .index-box .right{
+    margin-right:12px;
+}
+.left-section .indexes .index-box .right .change{
+    font-size:14px;
+    color:greenyellow;
+    font-weight:700;
+}
+
+/* #myChart{
+    background-color: black;
+    width:500px;
+    max-width: 500px;
+} */
+
+
+select[name='timeperiod']{
+    width:44px;
+    height:36px;
+}
+
+select[name='indicator']{
+    width:64px;
+    height:36px;
+}
+
+.main-section #live-chart{
+    width:calc(100vw - var(--nav-width)-20px);
+    height:500px;
+    
+}
+.main-section .chart #myChart{
+    width:100%;
+
+}
+
+.main-section .navigation{
+    width: 100%;
+    margin:10px 0px;
+    height:40px;
+    background-color: rgba(90, 46, 46, 0.6);
+    display: flex;
+    align-items: end;
+}
+
+.main-section .navigation .nav-tab{
+    margin:5px 15px;
+    animation: 1s linear 1s fadeIn;
+    cursor:pointer;
+    color:white;
+}
+
+.main-section .navigation .nav-tab:hover{
+    border-bottom:2px solid white;
+
+}
+
+.main-section .navigation .nav-tab.active{
+    border-bottom:2px solid white;
+
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+/* .content-tab.active{
+    display:block;
+} */
+
+div[name='fundamental'] .inner{
+    display: flex ;
+}
+
+div[name='fundamental'] .left{
+    margin:30px 20px;
+}
+
+
+div[name='fundamental'] .right{
+    margin:30px 20px;
+}
+
+div[name='fundamental'] .heading{
+    color:white;
+    font-size:17px;
+    font-weight: 500;
+}
+
+/* div[name='fundamental'] div{
+    margin:10px 0px;
+} */
+
+.main-section .funda-table{
+    color:white;
+    width:300px;
+    font-size: 14px;
+    font-weight: 200;
+    border-collapse: collapse;
+}
+
+.funda-table tr{
+    height:40px;
+}
+
+.funda-table td{
+    border-top:1px solid rgba(255,255,255,0.5);
+    border-bottom:1px solid rgba(255,255,255,0.5);
+}
+/* 
+div[name='fundamental']{
+    color:white;
+} */
+
+.funda-table .right{
+    font-weight: 500;
+    text-align: right;
+}
+
+div[name='sentimental'] .inner{
+    color:white;
+}
+
+div[name='sentimental'] .inner .news{
+    display: flex;
+    justify-content: start;
+    margin:15px 0px;
+}
+
+div[name='sentimental'] .inner .right .source{
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    margin: 0px;
+}
+
+div[name='sentimental'] .inner .right{
+    width: calc(100% - 100px - 200px);
+}
+div[name='sentimental'] .inner .right .title{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    
+}
+
+div[name='sentimental'] .inner .right .title a{
+    color: lightblue;   
+}
+
+div[name='sentimental'] .inner .right .content{
+    margin: 5px 0px;
+    font-size: 14px;
+}
+
+div[name='sentimental'] .inner .left img{
+    height:130px;
+    width:170px
+}
+
+div[name='sentimental'] .inner .left{
+    margin-right:15px;
+}
+
+div[name='sentimental'] .inner .right2{
+    width:80px;
+    
+}
+div[name='sentimental'] .inner .right2 .content{
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+div[name='sentimental'] .inner .right2 .title{
+    margin:0px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    background: blue;
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    background: yellow;
+
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    background: rosybrown;
+
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    background:  red;
+
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+
+
+.overlay{
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.overlay.hidden{
+    display: none;
+}
+
+#portfolio-analyzer .row{
+    display: flex;
+    /* justify-content: center; */
+    margin: 30px 10px;
+}
+
+#portfolio-analyzer .method-section{
+    display: flex;
+}
+#portfolio-analyzer .method-section div{
+    margin:0px 0px;
+}
+
+.method div div{
+    margin: 10px 0px;
+}
+
+.main-section input{
+    margin: 0px auto;
+    border: none;
+    height: 35px;
+    width: 475px;
+    border-radius: 5px;
+    margin-top: 15px !important;
+}
+
+.indexes button{
+    border: none;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background: rgba(0,0,0,0.1);
+    border-radius: 7px;
+
+}

@@ -1,0 +1,446 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Stocki</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> 
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/en.min.js" integrity="sha512-IS4cS3xCf0ASMwMgYwIo/fiAz3UCorMca4XSHGAEIvd/Qzy0SBez7HtLrKrjzGdKjAwPBS0B7yEi3zxVIcCXKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        <script src="{% static 'js/script2.js' %}"></script>
+
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>     -->
+    </head>
+    <body>
+    
+
+    <div class="overlay hidden" id="overlay"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <!-- <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Markets today</span></a> by TradingView</div> -->
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "FOREXCOM:SPXUSD",
+        "title": "S&P 500"
+      },
+      {
+        "proName": "FOREXCOM:NSXUSD",
+        "title": "US 100"
+      },
+      {
+        "proName": "FX_IDC:EURUSD",
+        "title": "EUR/USD"
+      }
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "dark",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "in"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget BEGIN -->
+
+  <!-- TradingView Widget END -->
+  <!-- TradingView Widget END -->
+        <div class="container">
+            <div class="left-section">
+                <div class="indexes">
+                    <button onclick="shiftToAnalyzer(event)">Portfolio Analyzer</button>
+                    <!-- <button onclick="shiftToSentimentAnalyzer(event)">Sentiment Trend Analyzer</button> -->
+                    <p class="heading">Index List</p>
+                    <div class="index-box">
+                        <div class="left">
+                            <p class="index-name">
+                                IHSG
+                            </p>
+                            <p class="index-value">
+                                6507.17
+                            </p>
+                        </div>
+                        <div class="right">
+                            <p class="change">+107</p>
+                        </div>
+                    </div>
+                    <div class="index-box">
+                        <div class="left">
+                            <p class="index-name">
+                                IHSG
+                            </p>
+                            <p class="index-value">
+                                6507.17
+                            </p>
+                        </div>
+                        <div class="right">
+                            <p class="change">+107</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- <div id="sentiment-analyzer" class="hidden">
+                <label for="tck-drop-2">
+                    Please select the stocks for your portfolio
+                    <select class="ticker-dropdown-2" id='tck-drop-2' style="width: 100%"></select>
+                </label>
+                <label for="tck-drop-3">
+                    Please select the stocks for your portfolio
+                    <select class="" id='tck-drop-3' style="width: 100%"></select>
+                </label>
+                
+                </select>
+            </div> -->
+            <div id="portfolio-analyzer" class="hidden">
+                <div>
+                    {% csrf_token %}
+                <label for="tck-drop">
+                    Please select the stocks for your portfolio
+                    <select class="ticker-dropdown" id='tck-drop' name="state" multiple="multiple"  style="width: 100%">
+                        
+                    </select>
+                </label>
+                <label for="funds">
+                    Enter your available funds
+                    <input type="text" id="funds" placeholder="Enter funds">
+                </label><br>
+                <label for="ex-return">
+                    Enter your expected annual return in %
+                    <input type="text" id="ex-return" placeholder="Enter expected return">
+                </label>
+
+                <button id="calculate-return" onclick="calculateReturn(event)">Calculate</button>
+                </div>
+                <div class="row">
+                <div class="method">
+                    <div>
+                        <div>
+                            <span class="info-label">Sharpe Ratio: </span>
+                            <span class="info" id="hrp-sharpe"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Volatiliy: </span>
+                            <span class="info" id="hrp-volatility"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Expected Annual Return: </span>
+                            <span class="info" id="hrp-ear"></span>
+                        </div>
+                    </div>
+                    <div class="method-section">
+                        <div>
+                            <span class="heading">HRP Weights</span>
+                            <table class="funda-table" id="hrp-weights">                       
+                            </table>
+                        </div>
+                        <div>
+                            <span class="heading">HRP Volume</span>
+                            <table class="funda-table"  id="hrp-volume">        
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="method">
+                    <div>
+                        <div>
+                            <span class="info-label">Sharpe Ratio: </span>
+                            <span class="info" id="sh-sharpe"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Volatiliy: </span>
+                            <span class="info" id="sh-volatility"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Expected Annual Return: </span>
+                            <span class="info" id="sh-ear"></span>
+                        </div>
+                    </div>
+                    <div class="method-section">
+                        <div>
+                            <span class="heading">Max Sharpe Weights</span>
+                            <table class="funda-table" id="msharp-weights"> </table>
+                        </div> 
+                        <div>
+                            <span class="heading">Max Sharpe Volume</span>
+                            <table class="funda-table"  id="msharp-volume">                       
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="method">
+                    <div>
+                        <div>
+                            <span class="info-label">Sharpe Ratio: </span>
+                            <span class="info" id="min-sharpe"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Volatiliy: </span>
+                            <span class="info" id="min-volatility"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Expected Annual Return: </span>
+                            <span class="info" id="min-ear"></span>
+                        </div>
+                    </div>
+                    <div class="method-section">
+                        <div>
+                            <span class="heading">Minimum Volatility Weights</span>
+                            <table class="funda-table" id="minvol-weights"></table>
+                        </div>
+                        <div>
+                            <span class="heading">Minimum Volatility Volume</span>
+                            <table class="funda-table"  id="minvol-volume"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="method">
+                    <div>
+                        <div>
+                            <span class="info-label">Sharpe Ratio: </span>
+                            <span class="info" id="eff-sharpe"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Volatiliy: </span>
+                            <span class="info" id="eff-volatility"></span>
+                        </div>
+                        <div>
+                            <span class="info-label">Expected Annual Return: </span>
+                            <span class="info" id="eff-ear"></span>
+                        </div>
+                    </div>
+                   
+                    
+                    <div class="method-section">
+                        <div>
+                            <span class="heading">Efficient Returns Weights</span>
+                            <table class="funda-table" id="effret-weights">
+                           
+                            </table>
+                        </div>
+                        <div>
+                            <span class="heading">Efficient Returns Volume</span>
+                            <table class="funda-table"  id="effret-volume">
+                              
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                  
+            </div>
+
+
+            <div class="main-section">
+                <input id="tags"  type="text" placeholder="Search for a Ticker">  
+               
+                <div class="stock-details">
+                    <div class="left">
+                        <p class="heading" id="ticker-name"></p>
+                        <p class="description" id="ticker-long"></p>
+                    </div>
+                    <div class="right"></div>
+                </div>
+                <div class="navigation">
+                    <span id="price-data" class="nav-tab" onclick="clicked(event,'price-data')">Price Data</span>
+                    <span id="fundamental" class="nav-tab" onclick="clicked(event, 'fundamental')">Fundamentals</span>
+                    <span id="sentimental" class="nav-tab" onclick="clicked(event, 'sentimental')">Sentimental Analysis</span>
+                    <!-- <span id="sentimental2" class="nav-tab" onclick="clicked(event, 'sentimental2')">Sentimental2 Analysis</span> -->
+                </div>
+                <!-- <div class="chart-settings">
+                    <p class="current-price">7.775</p>
+                    <p class="current-date">Oct 25</p>
+                    <div class="options">
+                      <select name="timeperiod" id="timeperiod-selector">
+                        <option value="1D">1D</option>
+                        <option value="1W">1W</option>
+                        <option value="1M">1M</option>
+                        <option value="1Y">1Y</option>
+                      </select>  
+                      <select name="indicator" id="technical-indicator">
+                        <option value="Close">Close</option>
+                        <option value="EMA">EMA</option>
+                        <option value="SMA">SMA</option>
+                        <option value="MACD">MACD</option>
+                      </select>
+                    </div>
+                </div> -->
+                <!-- <div name="sentimental2" class="content-tab"></div> -->
+                <div name="price-data" class="content-tab">
+                    <div class="chart" id="live-chart">
+                    </div>
+                    <script>
+                        var x = new TradingView.widget(
+                            {
+                            "autosize": true,
+                            "symbol": "NASDAQ:AAPL",
+                            "interval": "D",
+                            "timezone": "Etc/UTC",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "in",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "allow_symbol_change": false,
+                            "container_id": "live-chart"
+                            }
+                            );
+                    </script>
+                </div>
+                <div name="fundamental" class="content-tab">
+                    <div class="inner">
+                    <div class="left">
+                        <div>
+                            <span class="heading">Risk Measures</span>
+                            <table class="funda-table">
+                                
+                                <tr>
+                                    <td>Audit Risk</td>
+                                    <td class="right" id="audit-risk"></td>
+                                </tr>
+                                <tr>
+                                    <td>Board Risk</td>
+                                    <td class="right" id="compensation-risk"></td>
+                                </tr>
+                                <tr>
+                                    <td>Shareholder Rights Risk</td>
+                                    <td class="right" id="shareholder-risk"></td>
+                                </tr>
+                                </table>         
+                            </div>
+                            <div>
+                            <span class="heading">Valuation measure</span>
+                               <table class="funda-table">
+                                <tr>
+                                    <td>Trailing PE</td>
+                                    <td class="right" id="trailing-pe"></td>
+                                </tr>
+                                <tr>
+                                    <td>Forward PE</td>
+                                    <td class="right" id="forward-pe"></td>
+                                </tr>                        
+                                <tr>
+                                    <td>Market CAP</td>
+                                    <td class="right" id="market-cap"></td>
+                                </tr>  
+                                <tr>
+                                    <td>PEG Ratio</td>
+                                    <td class="right" id="peg-ratio"></td>
+                                </tr>  
+                                </table>
+                            </div>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <span class="heading">Profitability Ratios</span>
+                            <table class="funda-table">
+                            <tr>
+                                <td>Profit Margin</td>
+                                <td class="right" id="profit-margin"></td>
+                            </tr>
+                            <tr>
+                                <td>Operating Margin</td>
+                                <td class="right" id="operating-margin"></td>
+                            </tr>
+                            <tr>
+                                <td>Gross Margin</td>
+                                <td class="right" id="gross-margin"></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <span class="heading">Balance Sheet</span>
+                            <table class="funda-table">
+                            
+                            <tr>
+                                <td>Total Cash</td>
+                                <td class="right" id="total-cash"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Debt</td>
+                                <td class="right" id="total-debt"></td>
+                            </tr>
+    
+                            <tr>
+                                <td>Debt to Equity</td>
+                                <td class="right" id="debt-equity"></td>
+                            </tr>
+                            <tr>
+                                <td>Book Value Per Share</td>
+                                <td class="right" id="book-value"></td>
+                            </tr>
+                            <tr>
+                                <td>Current Ratio</td>
+                                <td class="right" id="current-ratio"></td>
+                            </tr>
+                            </table>
+                        </div>
+    
+                    </div>
+
+                    
+                        <!-- <td>Maria Anders</td>
+                            <td>Germany</td> -->
+                        <!-- <tr>
+                          <td>Alfreds Futterkiste</td>
+                          <td>Maria Anders</td>
+                          <td>Germany</td>
+                        </tr>
+                        <tr>
+                          <td>Centro comercial Moctezuma</td>
+                          <td>Francisco Chang</td>
+                          <td>Mexico</td>
+                        </tr> -->
+                      <!-- </table> -->
+                    </div>
+                </div>
+                <div name="sentimental" class="content-tab">
+                    <!-- <h1>Sentimental</h1> -->
+                    <div class="inner" id="news-container">
+                        <!-- <div class="news">
+                            <div class="left">
+                                <img src="https://images.wsj.net/im-726575/social" alt="" class="">
+                            </div>
+                            <div class="right"><p class="source">Wall Street Journal</p>
+                            <p class="title"><a href=""> Youtube CEO Susan Wojciki Resigns</a></p>
+                            <p class="content">Youtube CEO Susan Wojciki Resigns sdfjsdfsdf</p>
+                            </div>
+                            <div class="right2">
+                                <p class="title">Sentiment</p>
+                                <p class="content">Slightly Bearish</p>
+                            </div>
+                            
+                        </div> -->
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        
+    </body>
+</html>
